@@ -3,6 +3,7 @@
 namespace OrmDemo;
 
 use Nette;
+use Nextras\Orm\Entity\IEntity;
 
 
 /**
@@ -75,6 +76,28 @@ class HomepagePresenter extends BasePresenter
 
 		$comment->deletedAt = 'now';
 		$this->orm->comments->persistAndFlush($comment);
+		$this->redirect('this');
+	}
+
+
+	public function createComponentUpdateTagsForm()
+	{
+		if (!$this->post) $this->error();
+
+		$form = new Nette\Application\UI\Form;
+		$form->addCheckboxList('tags', 'Tags', $this->orm->tags->findAll()->fetchPairs('id', 'name'))
+			->setDefaultValue($this->post->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID)['tags']);
+
+		$form->addSubmit('submit', 'Ulozit nove stitky');
+		$form->onSuccess[] = [$this, 'processUpdateTagsForm'];
+		return $form;
+	}
+
+
+	public function processUpdateTagsForm(Nette\Application\UI\Form $form, $values)
+	{
+		$this->post->tags->set($values->tags);
+		$this->orm->posts->persistAndFlush($this->post);
 		$this->redirect('this');
 	}
 
