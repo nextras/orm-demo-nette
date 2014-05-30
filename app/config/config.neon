@@ -1,3 +1,7 @@
+extensions:
+	orm: Nextras\Orm\DI\OrmExtension
+
+
 parameters:
 
 
@@ -13,6 +17,10 @@ nette:
 
 	session:
 		expiration: 14 days
+
+
+orm:
+	model: OrmDemo\Orm
 
 
 services:
