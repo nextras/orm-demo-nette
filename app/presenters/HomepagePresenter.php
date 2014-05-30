@@ -36,4 +36,31 @@ class HomepagePresenter extends BasePresenter
 		$this->template->post = $this->post;
 	}
 
+
+	protected function createComponentAddCommentForm()
+	{
+		$form = new Nette\Application\UI\Form;
+		$form->addText('name', 'Jméno')->isRequired();
+		$form->addText('email', 'E-mail')->setType('email');
+		$form->addTextArea('content', 'Komentář');
+		$form->addSubmit('submit', 'Přidat komentář');
+
+		$form->onSuccess[] = [$this, 'processAddCommentForm'];
+		return $form;
+	}
+
+
+	public function processAddCommentForm(Nette\Application\UI\Form $form, $values)
+	{
+		$comment = new Comment();
+		$comment->content = $values->content;
+		$comment->name = $values->name;
+		$comment->email = $values->email;
+		$comment->post = $this->post;
+		$comment->createdAt = 'now';
+
+		$this->orm->comments->persistAndFlush($comment);
+		$this->redirect('this');
+	}
+
 }
