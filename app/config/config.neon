@@ -1,0 +1,20 @@
+parameters:
+
+
+php:
+	date.timezone: Europe/Prague
+
+
+nette:
+	application:
+		errorPresenter: Error
+		mapping:
+			*: OrmDemo\*Module\*Presenter
+
+	session:
+		expiration: 14 days
+
+
+services:
+	routerFactory: OrmDemo\RouterFactory()
+	router: @routerFactory::createRouter

@@ -1,0 +1,4 @@
+a[href^="#error:"] {
+	background: red;
+	color: white;
+}

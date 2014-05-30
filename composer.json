@@ -1,0 +1,6 @@
+{
+	"require": {
+		"php": "~5.4",
+		"nextras/nette-framework": "~2.2.0"
+	}
+}
