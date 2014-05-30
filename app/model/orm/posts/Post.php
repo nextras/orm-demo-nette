@@ -4,6 +4,7 @@ namespace OrmDemo;
 
 use Nette\Utils\DateTime;
 use Nextras\Orm\Entity\Entity;
+use Nextras\Orm\Relationships\OneHasMany;
 
 
 /**
@@ -11,9 +12,16 @@ use Nextras\Orm\Entity\Entity;
  * @property string $title
  * @property string $content
  * @property DateTime $createdAt
- * @property Comment[] $comments {1:n CommentsRepository}
+ * @property OneHasMany|Comment[] $allComments {1:n CommentsRepository}
+ * @property-read Comment[] $comments {virtual}
  * @property Tag[] $tags {m:n TagsRepository primary}
  */
 class Post extends Entity
 {
+
+	public function getComments()
+	{
+		return $this->allComments->get()->findBy(['deletedAt' => NULL]);
+	}
+
 }

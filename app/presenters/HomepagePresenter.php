@@ -63,4 +63,19 @@ class HomepagePresenter extends BasePresenter
 		$this->redirect('this');
 	}
 
+
+	/**
+	 * @secured
+	 */
+	public function handleDeleteComment($commentId)
+	{
+		/** @var Comment $comment */
+		$comment = $this->orm->comments->getById($commentId);
+		if (!$comment) $this->error();
+
+		$comment->deletedAt = 'now';
+		$this->orm->comments->persistAndFlush($comment);
+		$this->redirect('this');
+	}
+
 }

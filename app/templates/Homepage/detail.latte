@@ -13,6 +13,7 @@
 {foreach $post->comments as $comment}
 	<div class="comment">
 		<span>{$comment->name}, {$comment->email}</span>
+		<a n:href="deleteComment! $comment->id">smazat komentář</a>
 		<p>{$comment->content}</p>
 	</div>
 {/foreach}

@@ -12,7 +12,8 @@ use Nextras\Orm\Entity\Entity;
  * @property string|NULL $email
  * @property string $content
  * @property DateTime $createdAt
- * @property Post $post {m:1 PostsRepository}
+ * @property DateTime|NULL $deletedAt
+ * @property Post $post {m:1 PostsRepository $allComments}
  */
 class Comment extends Entity
 {

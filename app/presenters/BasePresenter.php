@@ -3,6 +3,7 @@
 namespace OrmDemo;
 
 use Nette;
+use Nextras\Application\UI\SecuredLinksPresenterTrait;
 
 
 /**
@@ -10,5 +11,5 @@ use Nette;
  */
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
-
+	use SecuredLinksPresenterTrait;
 }

@@ -4,6 +4,7 @@
 		"nextras/nette-framework": "~2.2.0",
 		"nextras/migrations": "~2.3",
 		"nextras/orm": "@dev",
-		"nette/database": "~2.3@dev"
+		"nette/database": "~2.3@dev",
+		"nextras/secured-links": "~1.2"
 	}
 }
