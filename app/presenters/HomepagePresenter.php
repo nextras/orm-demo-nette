@@ -41,7 +41,7 @@ class HomepagePresenter extends BasePresenter
 	protected function createComponentAddCommentForm()
 	{
 		$form = new Nette\Application\UI\Form;
-		$form->addText('name', 'Jméno')->isRequired();
+		$form->addText('name', 'Jméno')->setRequired();
 		$form->addText('email', 'E-mail')->setType('email');
 		$form->addTextArea('content', 'Komentář');
 		$form->addSubmit('submit', 'Přidat komentář');
