@@ -2,7 +2,7 @@
 
 namespace OrmDemo;
 
-use Nextras\Orm\Model\DIModel;
+use Nextras\Orm\Model\Model;
 
 
 /**
@@ -11,6 +11,6 @@ use Nextras\Orm\Model\DIModel;
  * @property-read CommentsRepository $comments
  * @property-read PostsRepository $posts
  */
-class Orm extends DIModel
+class Orm extends Model
 {
 }
