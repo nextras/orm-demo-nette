@@ -1,5 +1,5 @@
 extensions:
-	orm: Nextras\Orm\Bridge\NetteDI\OrmExtension
+	orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
 
 
 parameters:

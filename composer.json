@@ -1,10 +1,12 @@
 {
 	"require": {
 		"php": "~5.4",
-		"nextras/nette-framework": "~2.2.0",
+		"nette/nette": "@dev",
 		"nextras/migrations": "~2.3",
-		"nextras/orm": "@dev",
+		"nextras/orm": "dev-master",
 		"nette/database": "~2.3@dev",
 		"nextras/secured-links": "~1.2"
-	}
+	},
+	"minimum-stability": "dev",
+	"prefer-stable": true
 }
