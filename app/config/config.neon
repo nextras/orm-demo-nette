@@ -1,8 +1,6 @@
 extensions:
-	orm: Nextras\Orm\Bridge\NetteDI\OrmExtension
-
-
-parameters:
+	dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+	orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
 
 
 php:

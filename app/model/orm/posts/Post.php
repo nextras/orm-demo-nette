@@ -19,7 +19,7 @@ use Nextras\Orm\Relationships\OneHasMany;
 class Post extends Entity
 {
 
-	public function getComments()
+	public function getterComments()
 	{
 		return $this->allComments->get()->findBy(['deletedAt' => NULL]);
 	}

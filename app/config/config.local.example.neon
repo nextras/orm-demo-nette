@@ -1,10 +1,6 @@
-parameters:
-
-
-nette:
-	database:
-		dsn: 'mysql:host=127.0.0.1;dbname=orm-demo'
-		user:
-		password:
-		options:
-			lazy: yes
+dbal:
+	driver: mysql
+	host: 127.0.0.1
+	database: orm-demo
+	username: root
+	password: root
