@@ -1,5 +1,5 @@
 dbal:
-	driver: mysql
+	driver: mysqli
 	host: 127.0.0.1
 	database: orm-demo
 	username: root
