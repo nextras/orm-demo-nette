@@ -43,10 +43,10 @@ class HomepagePresenter extends BasePresenter
 	protected function createComponentAddCommentForm()
 	{
 		$form = new Nette\Application\UI\Form;
-		$form->addText('name', 'Jméno')->setRequired();
+		$form->addText('name', 'Name')->setRequired();
 		$form->addText('email', 'E-mail')->setType('email');
-		$form->addTextArea('content', 'Komentář');
-		$form->addSubmit('submit', 'Přidat komentář');
+		$form->addTextArea('content', 'Comment');
+		$form->addSubmit('submit', 'Add comment');
 
 		$form->onSuccess[] = [$this, 'processAddCommentForm'];
 		return $form;
@@ -92,7 +92,7 @@ class HomepagePresenter extends BasePresenter
 		$form->addCheckboxList('tags', 'Tags', $this->orm->tags->findAll()->fetchPairs('id', 'name'))
 			->setDefaultValue($this->post->tags->getRawValue());
 
-		$form->addSubmit('submit', 'Ulozit nove stitky');
+		$form->addSubmit('submit', 'Save tags');
 		$form->onSuccess[] = [$this, 'processUpdateTagsForm'];
 		return $form;
 	}
