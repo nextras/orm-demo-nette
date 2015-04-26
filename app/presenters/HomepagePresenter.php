@@ -86,7 +86,7 @@ class HomepagePresenter extends BasePresenter
 
 		$form = new Nette\Application\UI\Form;
 		$form->addCheckboxList('tags', 'Tags', $this->orm->tags->findAll()->fetchPairs('id', 'name'))
-			->setDefaultValue($this->post->toArray(IEntity::TO_ARRAY_RELATIONSHIP_AS_ID)['tags']);
+			->setDefaultValue($this->post->tags->getRawValue());
 
 		$form->addSubmit('submit', 'Ulozit nove stitky');
 		$form->onSuccess[] = [$this, 'processUpdateTagsForm'];
