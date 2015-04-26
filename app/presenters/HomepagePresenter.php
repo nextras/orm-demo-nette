@@ -3,7 +3,6 @@
 namespace OrmDemo;
 
 use Nette;
-use Nextras\Orm\Entity\IEntity;
 
 
 /**
@@ -11,7 +10,7 @@ use Nextras\Orm\Entity\IEntity;
  */
 class HomepagePresenter extends BasePresenter
 {
-	/** @var \OrmDemo\Orm @inject */
+	/** @var Orm @inject */
 	public $orm;
 
 	/** @var Post */
@@ -27,7 +26,10 @@ class HomepagePresenter extends BasePresenter
 	public function actionDetail($id)
 	{
 		$post = $this->orm->posts->getById($id);
-		if (!$post) $this->error();
+		if (!$post) {
+			$this->error();
+		}
+
 		$this->post = $post;
 	}
 
@@ -58,7 +60,6 @@ class HomepagePresenter extends BasePresenter
 		$comment->name = $values->name;
 		$comment->email = $values->email;
 		$comment->post = $this->post;
-		$comment->createdAt = 'now';
 
 		$this->orm->comments->persistAndFlush($comment);
 		$this->redirect('this');
@@ -70,9 +71,10 @@ class HomepagePresenter extends BasePresenter
 	 */
 	public function handleDeleteComment($commentId)
 	{
-		/** @var Comment $comment */
 		$comment = $this->orm->comments->getById($commentId);
-		if (!$comment) $this->error();
+		if (!$comment) {
+			$this->error();
+		}
 
 		$comment->deletedAt = 'now';
 		$this->orm->comments->persistAndFlush($comment);
@@ -82,7 +84,9 @@ class HomepagePresenter extends BasePresenter
 
 	public function createComponentUpdateTagsForm()
 	{
-		if (!$this->post) $this->error();
+		if (!$this->post) {
+			$this->error();
+		}
 
 		$form = new Nette\Application\UI\Form;
 		$form->addCheckboxList('tags', 'Tags', $this->orm->tags->findAll()->fetchPairs('id', 'name'))
