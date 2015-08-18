@@ -15,9 +15,9 @@ use Nextras\Orm\Relationships\OneHasMany;
  * @property string                     $title
  * @property string                     $content
  * @property DateTime                   $createdAt    {default now}
- * @property OneHasMany|Comment[]       $allComments  {1:n CommentsRepository}
+ * @property OneHasMany|Comment[]       $allComments  {1:n Comment}
  * @property-read ICollection|Comment[] $comments     {virtual}
- * @property ManyHasMany|Tag[]          $tags         {m:n TagsRepository primary}
+ * @property ManyHasMany|Tag[]          $tags         {m:n Tag primary}
  */
 class Post extends Entity
 {

@@ -2,7 +2,7 @@
 	"require": {
 		"php": ">=5.4",
 		"nette/nette": "~2.3.0",
-		"nextras/orm": "~1.0",
+		"nextras/orm": "~1.1",
 		"nextras/dbal": "~1.0",
 		"nextras/migrations": "~2.3",
 		"nextras/secured-links": "~1.2"

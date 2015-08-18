@@ -14,7 +14,7 @@ use Nextras\Orm\Entity\Entity;
  * @property string          $content
  * @property DateTime        $createdAt   {default now}
  * @property DateTime|NULL   $deletedAt
- * @property Post            $post        {m:1 PostsRepository $allComments}
+ * @property Post            $post        {m:1 Post::$allComments}
  */
 class Comment extends Entity
 {
