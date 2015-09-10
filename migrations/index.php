@@ -3,8 +3,9 @@
 require_once __DIR__ . '/../app/bootstrap.php';
 
 $dic = $configurator->createContainer();
-$context = $dic->getByType('Nette\Database\Context');
-$driver = new Nextras\Migrations\Drivers\MySqlNetteDbDriver($context, 'migrations');
+$conn = $dic->getByType('Nextras\Dbal\Connection');
+$dbal = new Nextras\Migrations\Bridges\NextrasDbal\NextrasAdapter($conn);
+$driver = new Nextras\Migrations\Drivers\MySqlDriver($dbal);
 
 if (PHP_SAPI === 'cli') {
 	$controller = new Nextras\Migrations\Controllers\ConsoleController($driver);
@@ -14,6 +15,6 @@ if (PHP_SAPI === 'cli') {
 
 $controller->addGroup('structure',  __DIR__ . '/structure');
 $controller->addGroup('test-data',  __DIR__ . '/test-data', ['structure']);
-$controller->addExtension('sql', new Nextras\Migrations\Extensions\NetteDbSql($context));
+$controller->addExtension('sql', new Nextras\Migrations\Extensions\SqlHandler($driver));
 
 $controller->run();
