@@ -10,4 +10,8 @@ use Nextras\Orm\Repository\Repository;
  */
 class CommentsRepository extends Repository
 {
+	static function getEntityClassNames()
+	{
+		return [Comment::class];
+	}
 }

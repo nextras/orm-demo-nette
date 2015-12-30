@@ -9,8 +9,9 @@ use Nextras\Orm\Relationships\ManyHasMany;
 /**
  * Tag
  *
+ * @property int                 $id {primary}
  * @property string              $name
- * @property ManyHasMany|Post[]  $posts   {m:n Post}
+ * @property ManyHasMany|Post[]  $posts {m:m Post::$tags}
  */
 class Tag extends Entity
 {

@@ -10,4 +10,8 @@ use Nextras\Orm\Repository\Repository;
  */
 class TagsRepository extends Repository
 {
+	static function getEntityClassNames()
+	{
+		return [Tag::class];
+	}
 }
