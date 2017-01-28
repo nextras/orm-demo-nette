@@ -17,7 +17,7 @@ class PostsRepository extends Repository
 	}
 
 
-	static function getEntityClassNames()
+	static function getEntityClassNames(): array
 	{
 		return [Post::class];
 	}

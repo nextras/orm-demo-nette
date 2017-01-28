@@ -7,14 +7,13 @@ php:
 	date.timezone: Europe/Prague
 
 
-nette:
-	application:
-		errorPresenter: Error
-		mapping:
-			*: OrmDemo\*Module\*Presenter
+application:
+	errorPresenter: Error
+	mapping:
+		*: OrmDemo\*Module\*Presenter
 
-	session:
-		expiration: 14 days
+session:
+	expiration: 14 days
 
 
 orm:
