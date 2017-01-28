@@ -12,13 +12,13 @@ use Nextras\Orm\Relationships\OneHasMany;
 /**
  * Post
  *
- * @property int                        $id {primary}
+ * @property int                        $id          {primary}
  * @property string                     $title
  * @property string                     $content
  * @property DateTimeImmutable          $createdAt   {default now}
  * @property OneHasMany|Comment[]       $allComments {1:m Comment::$post}
- * @property-read ICollection|Comment[] $comments {virtual}
- * @property ManyHasMany|Tag[]          $tags {m:m Tag::$posts, isMain=true}
+ * @property-read ICollection|Comment[] $comments    {virtual}
+ * @property ManyHasMany|Tag[]          $tags        {m:m Tag::$posts, isMain=true}
  */
 class Post extends Entity
 {
