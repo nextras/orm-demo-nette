@@ -11,7 +11,6 @@ use Nextras\Orm\Relationships\OneHasMany;
 
 /**
  * Post
- *
  * @property int                        $id          {primary}
  * @property string                     $title
  * @property string                     $content
@@ -24,6 +23,6 @@ class Post extends Entity
 {
 	public function getterComments()
 	{
-		return $this->allComments->get()->findBy(['deletedAt' => NULL]);
+		return $this->allComments->get()->findBy(['deletedAt' => null]);
 	}
 }

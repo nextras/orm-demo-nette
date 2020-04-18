@@ -1,10 +1,11 @@
 {
 	"require": {
-		"php": ">=7.0",
-		"nette/nette": "~2.4.0",
-		"nextras/orm": "~3.0@dev",
-		"nextras/dbal": "~3.0@dev",
-		"nextras/migrations": "~3.0",
-		"nextras/secured-links": "~1.2"
+		"php": ">=7.1",
+		"nette/nette": "~3.0",
+		"nextras/orm": "~3.0",
+		"nextras/dbal": "~3.0",
+		"nextras/migrations": "~3.1",
+		"nextras/secured-links": "~1.2",
+		"contributte/console": "~0.8.0"
 	}
 }

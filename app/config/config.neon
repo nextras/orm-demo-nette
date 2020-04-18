@@ -1,6 +1,8 @@
 extensions:
 	dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
 	orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+	migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
 
 
 php:
@@ -19,6 +21,12 @@ session:
 orm:
 	model: OrmDemo\Orm
 
+
+migrations:
+	dir: %appDir%/../migrations
+	driver: mysql
+	dbal: nextras
+	withDummyData: true
 
 services:
 	routerFactory: OrmDemo\RouterFactory()

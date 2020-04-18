@@ -6,9 +6,6 @@ use Nextras\Orm\Collection\ICollection;
 use Nextras\Orm\Repository\Repository;
 
 
-/**
- * @method Post|NULL getById($id)
- */
 class PostsRepository extends Repository
 {
 	public function findHomepageOverview()
