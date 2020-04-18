@@ -4,3 +4,4 @@ vendor/*
 !.gitignore
 /composer.lock
 /app/config/config.local.neon
+/.idea
