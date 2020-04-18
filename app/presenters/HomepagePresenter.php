@@ -2,12 +2,9 @@
 
 namespace OrmDemo;
 
-use Nette;
+use Nette\Application\UI\Form;
 
 
-/**
- * Homepage presenter.
- */
 class HomepagePresenter extends BasePresenter
 {
 	/** @var Orm @inject */
@@ -19,11 +16,13 @@ class HomepagePresenter extends BasePresenter
 
 	public function renderDefault()
 	{
-		$this->template->posts = $this->orm->posts->findHomepageOverview();
+		$template = $this->createTemplate(HomepageTemplate::class);
+		$template->posts = $this->orm->posts->findHomepageOverview();
+		$this->sendTemplate($template);
 	}
 
 
-	public function actionDetail($id)
+	public function actionDetail(int $id)
 	{
 		$post = $this->orm->posts->getById($id);
 		if (!$post) {
@@ -36,15 +35,17 @@ class HomepagePresenter extends BasePresenter
 
 	public function renderDetail()
 	{
-		$this->template->post = $this->post;
+		$template = $this->createTemplate(HomepageDetailTemplate::class);
+		$template->post = $this->post;
+		$this->sendTemplate($template);
 	}
 
 
 	protected function createComponentAddCommentForm()
 	{
-		$form = new Nette\Application\UI\Form;
+		$form = new Form;
 		$form->addText('name', 'Name')->setRequired();
-		$form->addText('email', 'E-mail')->setType('email');
+		$form->addText('email', 'E-mail')->setHtmlType('email');
 		$form->addTextArea('content', 'Comment');
 		$form->addSubmit('submit', 'Add comment');
 
@@ -53,7 +54,7 @@ class HomepagePresenter extends BasePresenter
 	}
 
 
-	public function processAddCommentForm(Nette\Application\UI\Form $form, $values)
+	public function processAddCommentForm(Form $form, $values)
 	{
 		$comment = new Comment();
 		$comment->content = $values->content;
@@ -69,7 +70,7 @@ class HomepagePresenter extends BasePresenter
 	/**
 	 * @secured
 	 */
-	public function handleDeleteComment($commentId)
+	public function handleDeleteComment(int $commentId)
 	{
 		$comment = $this->orm->comments->getById($commentId);
 		if (!$comment) {
@@ -88,7 +89,7 @@ class HomepagePresenter extends BasePresenter
 			$this->error();
 		}
 
-		$form = new Nette\Application\UI\Form;
+		$form = new Form;
 		$form->addCheckboxList('tags', 'Tags', $this->orm->tags->findAll()->fetchPairs('id', 'name'))
 			->setDefaultValue($this->post->tags->getRawValue());
 
@@ -98,11 +99,10 @@ class HomepagePresenter extends BasePresenter
 	}
 
 
-	public function processUpdateTagsForm(Nette\Application\UI\Form $form, $values)
+	public function processUpdateTagsForm(Form $form, $values)
 	{
 		$this->post->tags->set($values->tags);
 		$this->orm->posts->persistAndFlush($this->post);
 		$this->redirect('this');
 	}
-
 }

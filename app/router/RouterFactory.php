@@ -2,25 +2,17 @@
 
 namespace OrmDemo;
 
-use Nette,
-	Nette\Application\Routers\RouteList,
-	Nette\Application\Routers\Route;
+use Nette\Application\Routers\Route;
+use Nette\Application\Routers\RouteList;
+use Nette\Routing\Router;
 
 
-/**
- * Router factory.
- */
 class RouterFactory
 {
-
-	/**
-	 * @return \Nette\Application\IRouter
-	 */
-	public function createRouter()
+	public function createRouter(): Router
 	{
 		$router = new RouteList();
 		$router[] = new Route('<presenter>/<action>[/<id>]', 'Homepage:default');
 		return $router;
 	}
-
 }
