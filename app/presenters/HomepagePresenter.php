@@ -24,12 +24,7 @@ class HomepagePresenter extends BasePresenter
 
 	public function actionDetail(int $id)
 	{
-		$post = $this->orm->posts->getById($id);
-		if (!$post) {
-			$this->error();
-		}
-
-		$this->post = $post;
+		$this->post = $this->orm->posts->getByIdChecked($id);
 	}
 
 
@@ -72,11 +67,7 @@ class HomepagePresenter extends BasePresenter
 	 */
 	public function handleDeleteComment(int $commentId)
 	{
-		$comment = $this->orm->comments->getById($commentId);
-		if (!$comment) {
-			$this->error();
-		}
-
+		$comment = $this->orm->comments->getByIdChecked($commentId);
 		$comment->deletedAt = 'now';
 		$this->orm->comments->persistAndFlush($comment);
 		$this->redirect('this');

@@ -23,6 +23,6 @@ class Post extends Entity
 {
 	public function getterComments()
 	{
-		return $this->allComments->get()->findBy(['deletedAt' => null]);
+		return $this->allComments->toCollection()->findBy(['deletedAt' => null]);
 	}
 }
