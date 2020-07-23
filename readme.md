@@ -1,5 +1,5 @@
-Nextras Orm DEMO
-================
+Nextras Orm Demo in Nette Framework
+===================================
 
 Demo of [Nextras Orm](https://github.com/nextras/orm).
 
