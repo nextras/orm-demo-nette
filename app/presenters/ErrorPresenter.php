@@ -13,12 +13,12 @@ class ErrorPresenter extends BasePresenter
 {
 
 	/**
-	 * @param  Exception
+	 * @param  \Exception
 	 * @return void
 	 */
 	public function renderDefault($exception)
 	{
-		if ($exception instanceof \Nextras\Orm\NoResultException) {
+		if ($exception instanceof \Nextras\Orm\Exception\NoResultException) {
 			$this->setView('404');
 
 		} elseif ($exception instanceof Nette\Application\BadRequestException) {
