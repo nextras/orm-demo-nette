@@ -1,8 +1,11 @@
-<?php
+<?php declare(strict_types=1);
 
 use Nette\Application\Application;
 
+require __DIR__ . '/../vendor/autoload.php';
 
-/** @var \Nette\DI\Container $container */
-$container = require __DIR__ . '/../app/bootstrap.php';
-$container->getByType(Application::class)->run();
+
+$configurator = OrmDemo\Bootstrap::boot();
+$container = $configurator->createContainer();
+$application = $container->getByType(Application::class);
+$application->run();

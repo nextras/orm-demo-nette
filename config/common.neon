@@ -1,0 +1,20 @@
+extensions:
+	console: Contributte\Console\DI\ConsoleExtension(%consoleMode%)
+
+
+php:
+	date.timezone: Europe/Prague
+
+
+parameters:
+
+
+application:
+	errorPresenter:
+		4xx: Error4xx
+		5xx: Error5xx
+	mapping: OrmDemo\*\Presenters\*Presenter
+
+
+session:
+	expiration: 14 days

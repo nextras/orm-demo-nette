@@ -1,6 +1,12 @@
 #!/usr/bin/env php
-<?php declare(strict_types = 1);
-/** @var \Nette\DI\Container $container */
-$container = require __DIR__ . '/../app/bootstrap.php';
-$console = $container->getByType(Contributte\Console\Application::class);
+<?php declare(strict_types=1);
+
+use Contributte\Console\Application;
+
+require __DIR__ . '/../vendor/autoload.php';
+
+
+$configurator = OrmDemo\Bootstrap::boot();
+$container = $configurator->createContainer();
+$console = $container->getByType(Application::class);
 exit($console->run());

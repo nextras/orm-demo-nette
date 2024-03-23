@@ -1,0 +1,13 @@
+extensions:
+	nextras.dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+	nextras.orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+	nextras.migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+
+nextras.orm:
+	model: OrmDemo\Model\Orm
+
+nextras.migrations:
+	dir: %appDir%/../migrations
+	driver: mysql
+	dbal: nextras
+	withDummyData: true

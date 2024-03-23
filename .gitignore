@@ -3,5 +3,5 @@ temp/*
 vendor/*
 !.gitignore
 /composer.lock
-/app/config/config.local.neon
+/config/db.local.neon
 /.idea
