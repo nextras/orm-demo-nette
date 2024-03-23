@@ -5,6 +5,7 @@ namespace OrmDemo\Blog\Presenters;
 use Nette\Application\UI\Form;
 use Nette\Application\UI\Presenter;
 use Nette\DI\Attributes\Inject;
+use Nette\Utils\ArrayHash;
 use OrmDemo\Blog\Model\Comments\Comment;
 use OrmDemo\Blog\Model\Posts\Post;
 use OrmDemo\Model\Orm;
@@ -15,7 +16,7 @@ class HomePresenter extends Presenter
 	#[Inject]
 	public Orm $orm;
 
-	private Post $post;
+	private Post|null $post = null;
 
 
 	public function renderDefault(): void
@@ -34,6 +35,8 @@ class HomePresenter extends Presenter
 
 	public function renderDetail(int $id): void
 	{
+		if (!$this->post) $this->error();
+
 		$template = $this->createTemplate(PostDetailTemplate::class);
 		$template->post = $this->post;
 		$this->sendTemplate($template);
@@ -52,8 +55,10 @@ class HomePresenter extends Presenter
 	}
 
 
-	public function processAddCommentForm(Form $form, $values): void
+	public function processAddCommentForm(Form $form, ArrayHash $values): void
 	{
+		if (!$this->post) $this->error();
+
 		$comment = new Comment();
 		$comment->content = $values->content;
 		$comment->name = $values->name;
@@ -76,9 +81,7 @@ class HomePresenter extends Presenter
 
 	public function createComponentUpdateTagsForm(): Form
 	{
-		if (!$this->post) {
-			$this->error();
-		}
+		if (!$this->post) $this->error();
 
 		$form = new Form;
 		$form->addCheckboxList('tags', 'Tags', $this->orm->tags->findAll()->fetchPairs('id', 'name'))
@@ -90,8 +93,10 @@ class HomePresenter extends Presenter
 	}
 
 
-	public function processUpdateTagsForm(Form $form, $values): void
+	public function processUpdateTagsForm(Form $form, ArrayHash $values): void
 	{
+		if (!$this->post) $this->error();
+
 		$this->post->tags->set($values->tags);
 		$this->orm->posts->persistAndFlush($this->post);
 		$this->redirect('this');

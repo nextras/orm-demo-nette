@@ -7,6 +7,7 @@ use Nette\Bridges\ApplicationLatte\Template;
 
 abstract class LayoutTemplate extends Template
 {
-    public string $basePath;
-    public array $flashes;
+	public string $basePath;
+	/** @var list<\stdClass> */
+	public array $flashes;
 }
